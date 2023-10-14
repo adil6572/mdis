@@ -1,0 +1,15 @@
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+#frame {
+  max-width: 1000px; /* Maximum width in pixels */
+  max-height: 600px; /* Maximum height in pixels */
+  /* Optionally, you can center the image horizontally and vertically */
+  display: block; /* Remove any default inline spacing */
+  margin: 0 auto; /* Center horizontally */
+}

@@ -1,0 +1,20 @@
+{% load static %}  <header id="header" class="d-flex align-items-center fixed-t">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="  {% url 'index' %} ">MDIS</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href=" {% static 'index.html' %} " class="logo me-auto"><img src=" {% static '/img/logo.png' %} " alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link  active" id="index-link" href=" {% url 'index' %} ">Home</a></li>
+          <li><a class="nav-link " id="pnemonia-link" href=" {% url 'pnemonia' %} ">Pnemonia</a></li>
+          <li><a class="nav-link " id="tumor-link" href=" {% url 'tumor' %} ">Brain Tumor</a></li>
+          <li><a class="nav-link " id="malaria-link" href=" {% url 'malaria' %} ">Malaria</a></li>
+<!--          <li><a class="nav-link " id="contact-link"href=" {% url 'contact' %} ">Contact</a></li>-->
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->

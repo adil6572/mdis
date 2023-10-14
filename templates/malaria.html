@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Malaria Detection</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href=" {% static '/img/favicon.png' %} " rel="icon">
+    <link href=" {% static '/img/apple-touch-icon.png' %} " rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href=" {% static '/vendor/fontawesome-free/css/all.min.css' %} " rel="stylesheet">
+    <link href=" {% static '/vendor/animate.css/animate.min.css' %} " rel="stylesheet">
+    <link href=" {% static '/vendor/bootstrap/css/bootstrap.min.css' %} " rel="stylesheet">
+    <link href=" {% static '/vendor/bootstrap-icons/bootstrap-icons.css' %} " rel="stylesheet">
+    <link href=" {% static '/vendor/boxicons/css/boxicons.min.css' %} " rel="stylesheet">
+    <link href=" {% static '/vendor/glightbox/css/glightbox.min.css' %} " rel="stylesheet">
+    <link href=" {% static '/vendor/remixicon/remixicon.css' %} " rel="stylesheet">
+    <link href=" {% static '/vendor/swiper/swiper-bundle.min.css' %} " rel="stylesheet">
+
+
+
+    <link href=" {% static '\css\image.css' %} " rel="stylesheet">
+
+
+    <!-- Template Main CSS File -->
+    <link href=" {% static '/css/style.css' %} " rel="stylesheet">
+
+
+<body>
+
+
+<!-- ======= Header ======= -->
+    {% include "components/header.html" %}
+<!-- End Header -->
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Malaria</h2>
+                <ol>
+                     <li><a href=" {% url 'index' %} ">Home</a></li>
+                    <li>Malaria</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs Section -->
+
+    <section class="inner-page">
+        <div>
+            <div class="row">
+                <div class="container col-md-6">
+                    <div class="mb-5">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <label for="Image" class="form-label">Upload blood smear image</label>
+                            {{ form.image }}
+                            <button type="submit" class="btn btn-primary mt-3">Upload</button>
+                        </form>
+
+
+                        {##}
+                        {#                <label for="Image" class="form-label">Upload blood smear image</label>#}
+                        {#                <input class="form-control" type="file" id="formFile" onchange="preview()">#}
+
+                        <button onclick="clearImage()" class="btn btn-primary mt-3">Clear Image</button>
+                    </div>
+                    <div class="container col-md-6">
+
+                        {% if image_url %}
+                              <h1>Input Image </h1>
+{#                            <h1>{{ image.url }} </h1>#}
+                        <img id="frame" src="{{ image_url}}" class="img-fluid"/>
+                        {% endif %}
+                     <img id="frame" src="{{ image.url }} " class="img-fluid"/>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </section>
+    {% if prediction == True %}
+        <section>
+
+        {% if result == 0 %}
+            <div class="container">
+                <h3 class="align-content-center">Prediction Result</h3>
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">No Malaria!</h4>
+                    <p>The model's analysis does not detect the presence of malaria parasites in the provided blood smear image</p>
+
+                </div>
+            </div>
+            {% else %}
+              <div class="container">
+                <h3 class="align-content-center">Prediction Result</h3>
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">Malaria Found</h4>
+                    <p>The model's analysis indicates a presence of malaria parasites in the provided blood smear image. While this prediction is suggestive of malaria, </p>
+                </div>
+            </div>
+        {% endif %}
+  {% endif %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">About Malaria</h5>
+                                <p class="card-text">
+
+Malaria is a life-threatening infectious disease caused by Plasmodium parasites, primarily transmitted to humans through the bite of infected female Anopheles mosquitoes. It presents with symptoms like fever, chills, sweats, fatigue, and can lead to severe complications if left untreated. Despite ongoing efforts to control and prevent the spread of malaria, it remains a significant global health challenge, particularly affecting people in tropical and subtropical regions, with a profound impact on public health and socioeconomic development.
+                                </p>
+<!--                                <a href="#" class="btn btn-primary">Read More</a>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Malaria Symtoms</h5>
+                                <p class="card-text">Below are the some well known symptoms for malaria</p>
+                                <ul>
+                                    <li>extreme tiredness and fatigue&nbsp;</li>
+                                    <li>impaired consciousness</li>
+                                    <li>multiple convulsions</li>
+                                    <li>difficulty breathing</li>
+                                    <li>dark or bloody urine</li>
+                                    <li>jaundice (yellowing of the eyes and skin)&nbsp;</li>
+                                    <li>abnormal bleeding.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+
+
+
+
+        <!-- ======= Frequently Asked Questions Section ======= -->
+        <section id="faq" class="faq section-bg">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Unlocking Answers to Your Questions: Our FAQs Got You Covered!.</p>
+                </div>
+
+                <div class="faq-list">
+                    <ul>
+
+                        {% for question,asnwer in faqs.items %}
+                        <li data-aos="fade-up" >
+                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
+                                                                           data-bs-target="#faq-list-2"
+                                                                           class="collapsed">{{ question }} <i class="bx bx-chevron-down icon-show"></i><i
+                                    class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                                <p>
+                                    {{ asnwer }}
+                                </p>
+                            </div>
+                        </li>
+
+
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+        </section><!-- End Frequently Asked Questions Section -->
+
+
+
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+    {% include "components/footer.html" %}
+<!-- End Footer -->
+
+<div id="preloader"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src=" {% static '/vendor/purecounter/purecounter_vanilla.js' %} "></script>
+<script src=" {% static '/vendor/bootstrap/js/bootstrap.bundle.min.js' %} "></script>
+<script src=" {% static '/vendor/glightbox/js/glightbox.min.js' %} "></script>
+<script src=" {% static '/vendor/swiper/swiper-bundle.min.js' %} "></script>
+<script src=" {% static '/vendor/php-email-form/validate.js' %} "></script>
+
+<!-- Custom  JS Files -->
+<script src=" {% static '\js\image.js' %} "></script>
+
+<!-- Template Main JS File -->
+<script src=" {% static '/js/main.js' %} "></script>
+  <script src=" {% static '/js/faqs.js' %} " defer></script>
+
+<script>
+document.getElementById("malaria-link").classList.add("active")
+document.getElementById("index-link").classList.remove("active")
+
+</script>
+</body>
+
+</html>
